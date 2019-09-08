@@ -9,8 +9,11 @@ import Meta from 'vue-meta';
 import {createRouter} from '@/.lavas/router';
 import {createStore} from '@/.lavas/store';
 import AppComponent from './App.vue';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(Meta);
+Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
 

@@ -1,8 +1,18 @@
 <template>
     <div class="page-index">
-        <h2>LAVAS</h2>
-        <h4>[ˈlɑ:vəz]</h4>
-        <router-link to="/detail/1">To detail page</router-link>
+        <h3>詳細情報照会ツール</h3>
+        <h4>下記の検索欄で検索できます</h4>
+        <div style="margin-top: 15px; margin-bottom: 15px">
+          <el-input placeholder="照会項目" v-model="input3" class="input-with-select">
+            <el-select v-model="select" slot="prepend" placeholder="項目種別">
+              <el-option label="店舗名" value="1"></el-option>
+              <el-option label="注文番号" value="2"></el-option>
+              <el-option label="電話番号" value="3"></el-option>
+            </el-select>
+            <el-button slot="append" icon="el-icon-search" @click="searchDetail"></el-button>
+          </el-input>
+        </div>
+        <router-link to="/detail/1">To detail page from 1</router-link>
     </div>
 </template>
 
@@ -21,21 +31,39 @@ export default {
     },
     async asyncData({store, route}) {
         setState(store);
-    }
+    },
+    data() {
+      return {
+        input3: '',
+        select: ''
+      }
+    },
+    methods: {
+     searchDetail() {
+       this.$router.push('/detail/' + this.input3);
+     }
+   }
 };
 </script>
 
-<style lang="stylus" scoped>
+<style>
+.el-select .el-input {
+  width: 130px;
+}
+.input-with-select .el-input-group__prepend {
+  background-color: #fff;
+}
 
-.page-index
-    display flex
-    justify-content center
-    align-items center
-    flex-direction column
+.page-index {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
-    h2
-        font-size 46px
-        font-weight 500
-        margin-bottom 0
-
+h3 {
+  font-size: 36px;
+  font-weight: 500;
+  margin-bottom: 0;
+}
 </style>
